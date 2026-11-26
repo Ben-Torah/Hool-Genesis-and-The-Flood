@@ -19395,10 +19395,10 @@ V.f0_approaches = el => {
 <script data-fig="w_split.js">
 
 V.w_split = el => {
-  const f = frame(el, {title: "How the review splits into its five parts"});
+  const f = frame(el, {title: "What’s in the thing you’re reading right now"});
   if (!document.getElementById("wsp-css")) H("style", {id: "wsp-css", html: `
 .wsp{display:flex;flex-direction:column;gap:14px;font:400 13px/1.3 var(--ui)}
-.wsp a{display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr) 96px;grid-template-areas:"nm tr pc";align-items:center;gap:6px 16px;color:inherit;text-decoration:none}
+.wsp a{display:grid;grid-template-columns:minmax(0,240px) minmax(0,1fr) 70px;grid-template-areas:"nm tr pc";align-items:center;gap:6px 16px;color:inherit;text-decoration:none}
 .wsp .nm{grid-area:nm}.wsp .tr{grid-area:tr}.wsp .pc{grid-area:pc;text-align:right}
 .wsp .nm b{display:block;font:600 10.5px var(--ui);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
 .wsp .nm span{font:600 14.5px/1.3 var(--ui);color:var(--ink)}
@@ -19407,15 +19407,15 @@ V.w_split = el => {
 .wsp .pc b{display:block;font:700 17px var(--ui);color:var(--ink);font-variant-numeric:tabular-nums}.wsp .pc span{font-size:11.5px;color:var(--ink-3)}
 .wsp a:hover .nm span{text-decoration:underline}.wsp a:hover .br{filter:brightness(1.12)}
 @media (max-width:560px){.wsp{gap:16px}.wsp a{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm pc" "tr tr";gap:6px 12px}.wsp .tr{height:20px}}`}, document.head);
-  const P = [["Part One", "The problem", 153751, "#background", "var(--lapis)"], ["Part Two", "Hool’s theory", 46896, "#hool", "var(--hool)"], ["Part Three", "The reply", 179831, "#reply", "var(--sci)"], ["Part Four", "Conclusion", 4450, "#conclusion", "var(--ink-3)"], ["Part Five", "Other approaches", 23379, "#approaches", "var(--sun)"]];
+  const P = [["Part One", "The problems with Bereishis", 153751, "#background", "var(--lapis)"], ["Part Two", "Hool’s theory", 46896, "#hool", "var(--hool)"], ["Part Three", "Why Hool’s theories fail", 179831, "#reply", "var(--sci)"], ["Part Four", "Conclusion", 4450, "#conclusion", "var(--ink-3)"], ["Part Five", "Other approaches", 23379, "#approaches", "var(--sun)"]];
   const T = P.reduce((a, r) => a + r[2], 0), M = Math.max(...P.map(r => r[2]));
   const g = H("div", {cls: "wsp"}, f.body);
   P.forEach(([part, name, n, href, col]) => {
     const pct = (100 * n / T).toFixed(1);
-    const a = H("a", {href, "aria-label": part + ", " + name + ": " + pct + " percent of the words"}, g);
+    const a = H("a", {href, "aria-label": part + ", " + name + ": " + pct + " percent of the review"}, g);
     const nm = H("div", {cls: "nm"}, a); H("b", {text: part}, nm); H("span", {text: name}, nm);
     const tr = H("div", {cls: "tr"}, a); H("div", {cls: "br", style: "width:" + (100 * n / M).toFixed(2) + "%;--c:" + col}, tr);
-    const pc = H("div", {cls: "pc"}, a); H("b", {text: pct + "%"}, pc); H("span", {text: Math.round(n / 1000) + ",000 words"}, pc);
+    const pc = H("div", {cls: "pc"}, a); H("b", {text: pct + "%"}, pc);
   });
 };
 </script>
